@@ -7,7 +7,6 @@ import {
   AiFillSetting,
 } from "react-icons/ai";
 function Clock(props) {
-  const settings = useContext(TimeContext);
   /* const { second, setSecond } = useContext(TimeContext); */
   const { second, setSecond } = useContext(TimeContext);
   const [message, setMessage] = useState(false);
@@ -21,9 +20,7 @@ function Clock(props) {
     e.preventDefault();
     setTimer(false);
   };
-  function tick() {
-    setSecond(second - 1);
-  }
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (!timer || second < 0) {
@@ -31,13 +28,13 @@ function Clock(props) {
       } else if (second === 0) {
         setMessage(true);
       } else if (second > 0) {
-        return tick();
+        setSecond(second - 1);
       }
     }, 1000);
     return () => {
       clearInterval(interval);
     };
-  }, [timer, second]);
+  }, [timer, second, setSecond]);
 
   useEffect(() => {
     if (message === true) {

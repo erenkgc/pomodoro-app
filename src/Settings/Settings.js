@@ -3,7 +3,7 @@ import TimeContext from "../Context/TimeContext";
 import "./Settings.css";
 import { AiFillBackward } from "react-icons/ai";
 const Settings = (props) => {
-  const { second, setSecond } = useContext(TimeContext);
+  const { setSecond } = useContext(TimeContext);
 
   const [minute, setMinute] = useState();
   const minuteChangeHandler = (e) => {
